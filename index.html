@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>RV Roadtrip</title>
+</head>
+<body>
+    <!--begin header-->
+    <header class="header">
+        <h1 class="page-title">RV Roadtrip</h1>
+        <div class="bg-image">
+            <img src="./assets/css/images/test-image-rv-roadtrip.png" alt="" />
+        </div>
+        <a href="https://www.nps.gov/index.htm">Visit NPS.gov</a>
+    </header>
+    <!--end header-->
+
+    <!--begin search for National Parks section-->
+    <section id="search-parks-container" class="search-parks-form">
+        <div class="section-search-title">
+            <h3>Search National Parks for Information about RV campgrounds</h3>
+        </div>
+        <div class="search-parks">
+            <input type="text" name="search-park" class="search-input" placeholder="Search National Parks">
+            <button id="search-btn" class="search-bar" type="submit">Search</button>
+        </div>
+        <div id="map" class="map-style">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3333.8277966816736!2d-111.91109838517026!3d33.32331718081046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b06dfb5ce330d%3A0x190a23cdfb62c216!2s3939%20W%20Windmills%20Blvd%2C%20Chandler%2C%20AZ%2085226!5e0!3m2!1sen!2sus!4v1590950466825!5m2!1sen!2sus" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+    </section>
+    <!--end search for National Parks-->
+
+    <!--begin RV/park info section-->
+    <section id="park-info" class="park-info-container">
+        <!--campground info section-->
+        <div id="rv-info-container" class="rv-info-container">
+            <div class="campground-search-container">
+                <h4 class="rv-info">RV Info for: <span id="search-park-input"></span></h4>
+            </div>
+        
+            <!--bullet points sub-section-->
+            <div id="bullet-points" class="bullet-container"></div>
+        </div>    
+        <!--end campground info section-->
+
+        <!--begin Park description-->
+        <div id="park-description">
+            <div id="park-img" class="park-img">
+                <img src="">
+            </div>
+        </div>
+        <!-- end Park description-->
+    </section>
+    <!--Rv/park info-->
+
+    <!--begin 5 day forecast-->
+    <section id="forecast-info" class="forecast-container">
+        <div id="forecast-title-container" class="forecast-title-container">
+            <h4 class="forecast-title">Five Day Forecast for: <span id="forecast-park"></span></h4>
+        </div>
+        <!--forecast prediction-->
+        <div id="forecast-prediction"></div>
+    </section>
+
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

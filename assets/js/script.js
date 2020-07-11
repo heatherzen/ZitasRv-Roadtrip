@@ -8,14 +8,13 @@ function getInputParkData() {
         // some alert message
     }
     else {
-        cleanParkInput(parkName);
-        getParkData(parkName);
+        getParkData(cleanParkInput(parkName));
     }
 }
 function cleanParkInput(parkName) {
-   var cleanInput = parkName.split(" ");
-   var cleanName = cleanInput.filter(noSpaces => noSpaces !=="");
-   return cleanName.join(" ").toLowerCase();
+    var cleanInput = parkName.split(" ");
+    var cleanName = cleanInput.filter(noSpaces => noSpaces !== "");
+    return cleanName.join(" ").toLowerCase();
 }
 
 var apiKey = "aqSeG01qbzM1PxC6rl1RhVTduggetxV6DyVBxjar"

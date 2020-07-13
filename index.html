@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>RV Roadtrip</title>
 </head>
 <body>
     <!--begin header-->
     <header class="header">
+        <h5 id="covid-disclaimer" class="covid-style" >
+            For information on restrictions of park openings and activities due to Covid-19, please visit <a href="https://www.nps.gov/index.htm">www.NPS.gov</a>
+        <h5>
         <h1 class="page-title">RV Roadtrip</h1>
         <div class="bg-image">
             <img src="./assets/css/images/test-image-rv-roadtrip.png" alt="" />
         </div>
-        <a href="https://www.nps.gov/index.htm">Visit NPS.gov</a>
-        <div id="covid-disclaimer" class="covid-style" ></div>
+        
+        
     </header>
     <!--end header-->
 
@@ -23,10 +27,10 @@
         <div class="section-search-title">
             <h3>Search National Parks for Information about RV campgrounds</h3>
         </div>
-        <div class="search-parks">
+        <form class="search-parks">
             <input type="text" name="search-park" class="search-input" placeholder="Search National Parks">
             <button id="search-btn" class="search-bar" type="submit">Search</button>
-        </div>
+        </form>
         <div id="storage-container" class="storage-style"></div>
     </section>
     <!--end search for National Parks-->
@@ -49,7 +53,7 @@
         </div>
         <!-- end Park description-->
     </section>
-    <!--Rv/park info-->
+    <!-- end Rv/park info-->
 
     <!--begin 5 day forecast-->
     <section id="forecast-info" class="forecast-container">
@@ -59,7 +63,17 @@
         <!--forecast prediction-->
         <div id="forecast-prediction" class="forecast-items"></div>
     </section>
+    <!-- end 5 day forecast-->
 
+        <!-- begin modal div-->
+    <div class="modal" id="modal-popup">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          Please try again as no park with that name was found
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+        <!-- end modal div-->
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

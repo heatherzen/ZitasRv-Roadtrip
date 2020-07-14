@@ -1,3 +1,6 @@
 header {
     background-image: url("./assets/css/images/bg-image.jpg");
 }
+bg-image{
+    height: 100 px;
+}

@@ -15,23 +15,26 @@
         <h5 id="covid-disclaimer" class="notification" >
             For information on restrictions of park openings and activities due to Covid-19, please visit <a href="https://www.nps.gov/index.htm">www.NPS.gov</a>
         <h5>
-        <h1 class="title">RV Roadtrip</h1>
-        <div class="bg-image">
-            <img src="./assets/css/images/bg-image.jpg" alt="" />
+        <h1 class="title is-2">RV Roadtrip</h1>
+        <div class="message-header">
+            <p>About Us</p>
         </div>
-        
+        <div class="message-body">
+            A website designed for those who are interested in visiting the national parks. Search by name and find out about the different campsites each park has.
+        </div>
+            <img style=height:400px;width:max-content class="bgimage"src="./assets/css/images/bg-image.jpg" alt="yellowstone national park" />
         
     </header>
     <!--end header-->
 
     <!--begin search for National Parks section-->
-    <section id="search-parks-container" class="search-parks-form">
+    <section id="search-parks-container" class="card">
         <div class="section-search-title">
-            <h3>Search National Parks for Information about RV campgrounds</h3>
+            <h3 class="title is-4">Search National Parks for Information about RV campgrounds</h3>
         </div>
         <form class="search-parks">
             <input type="text" name="search-park" class="search-input" placeholder="Search National Parks">
-            <button id="search-btn" class="search-bar" type="submit">Search</button>
+            <button id="search-btn" class="search-bar; button is-info" type="submit">Search</button>
         </form>
         <div id="storage-container" class="storage-style"></div>
     </section>
@@ -51,7 +54,11 @@
         <!--end campground info section-->
 
         <!--begin Park description-->
-        <div id="park-description">
+        <div class="block">
+            <div class="columns"></div>
+                <div id="park-description" class="column">            
+                </div>
+            </div>
         </div>
         <!-- end Park description-->
     </section>

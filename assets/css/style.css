@@ -1,6 +1,6 @@
-header {
-    background-image: url("./assets/css/images/bg-image.jpg");
+.message-header {
+    display:flex
 }
-bg-image{
-    height: 100 px;
+.search-input{
+    border-style: double;
 }

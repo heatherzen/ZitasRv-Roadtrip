@@ -1,3 +1,4 @@
+
 var parkArray = [];
 var parkNameEl;
 var nationalPark = "";
@@ -206,3 +207,5 @@ var buttonOnClick = function (id) {
     getParkData(id);
 }
 getParkName();
+
+

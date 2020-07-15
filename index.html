@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>RV Roadtrip</title>
 </head>
+
 <body>
     <!--begin header-->
     <header class="header">
-        <h1 class="page-title">RV Roadtrip</h1>
-        <div class="bg-image">
-            <img src="./assets/css/images/test-image-rv-roadtrip.png" alt="" />
+        <h5 id="covid-disclaimer" class="notification" >
+            For information on restrictions of park openings and activities due to Covid-19, please visit <a href="https://www.nps.gov/index.htm">www.NPS.gov</a>
+        <h5>
+            
+        <h1 class="title is-2">RV Roadtrip</h1>
+        <div class="message-header">
+            <p>About Us</p>
         </div>
-        <a href="https://www.nps.gov/index.htm">Visit NPS.gov</a>
+        <div class="message-body">
+            A website designed for those who are interested in visiting the national parks. Search by name and find out about the different campsites each park has.
+        </div>
+            <img style=height:400px;width:max-content class="bgimage"src="./assets/css/images/bg-image.jpg" alt="yellowstone national park" />
+        
     </header>
+
     <!--end header-->
 
     <!--begin search for National Parks section-->
-    <section id="search-parks-container" class="search-parks-form">
+    <section id="search-parks-container" class="card">
         <div class="section-search-title">
-            <h3>Search National Parks for Information about RV campgrounds</h3>
+            <h3 class="title is-4">Search National Parks for Information about RV campgrounds</h3>
         </div>
+
         <div class="search-parks">
             <input type="text" name="search-park" class="search-input" id="parkName" placeholder="Search National Parks">
             <button id="search-btn" class="search-bar" type="submit">Search</button>
@@ -29,6 +42,7 @@
         <div id="parkName-btn">
             
         </div>
+
     </section>
     <!--end search for National Parks-->
 
@@ -39,21 +53,22 @@
             <div class="campground-search-container">
                 <h4 class="rv-info">RV Info for: <span id="search-park-input"></span></h4>
             </div>
-        
+
             <!--bullet points sub-section-->
             <div id="bullet-point" class="bullet-container"></div>
-        </div>    
+        </div>
         <!--end campground info section-->
 
         <!--begin Park description-->
-        <div id="park-description">
-            <div id="park-img" class="park-img">
-
+        <div class="block">
+            <div class="columns"></div>
+                <div id="park-description" class="column">            
+                </div>
             </div>
         </div>
         <!-- end Park description-->
     </section>
-    <!--Rv/park info-->
+    <!-- end Rv/park info-->
 
     <!--begin 5 day forecast-->
     <section id="forecast-info" class="forecast-container">
@@ -61,11 +76,24 @@
             <h4 class="forecast-title">Five Day Forecast for: <span id="forecast-park"></span></h4>
         </div>
         <!--forecast prediction-->
-        <div id="forecast-prediction" class="forecast-items"></div>
+        <div id="forecast-prediction" class="forecast-items flexbox-rows"></div>
     </section>
+    <!-- end 5 day forecast-->
+
+        <!-- begin modal div-->
+    <div class="modal" id="modal-popup">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          Please try again as no park with that name was found
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+<!--     </div> -->
+        <!-- end modal div-->
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>

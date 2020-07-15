@@ -6,4 +6,15 @@
 }
 .flexbox-rows{
     display:flex;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+.flexbox-camp {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+li {
+    list-style: none;
+    padding: 20px;
 }

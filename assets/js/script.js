@@ -76,7 +76,7 @@ function getParkData(parkName) {
             saveParkData();
         })
         .catch(function (error) {
-            alertModal();
+        //    alertModal();
             console.log(error);
         })
 }
@@ -155,7 +155,7 @@ function getParkWeatherData(lat, lon) {
                 $("#forecast-prediction").append(dailyDivEl);
             }
         }).catch(function (error) {
-            alertModal();
+           // alertModal();
             console.log(error);
         });
 }

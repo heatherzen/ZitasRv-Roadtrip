@@ -1,16 +1,24 @@
+
 var parkArray = [];
 var parkNameEl;
+var nationalPark = "";
+var parkNameBody = document.querySelector("#parkName-btn")
+var savePark = [];
+var parkNameInput = "";
+var parkBtnId = [];
+var counter = 0;
+var parkNum = 9;
 
 // retrieve park name from user input and pass to fetch
 function getInputParkData() {
+    console.log("testing");
     var parkName = $(parkNameEl).val().trim();
     if (!parkName) {
-        // some alert message
-        alertModal();
+        alertModal()
     }
     else {
         getParkData(cleanParkInput(parkName));
-    }
+    };
 }
 function cleanParkInput(parkName) {
     var cleanInput = parkName.split(" ");
@@ -32,23 +40,20 @@ function getParkData(parkName) {
     fetch(apiUrl)
         .then(function (response) {
             if (!response.ok) {
-                // some alert message
                 return Promise.reject(response);
             }
             else {
-                console.log(response);
                 return response.json();
             }
         })
         .then(function (response) {
-            console.log(response);
             var parkId = response.data[0].parkCode;
             var parkLong = response.data[0].longitude;
             var parkLat = response.data[0].latitude;
             //should probably display url of park when page loads and message
             // instructing users to click link for information on park and campground fees
             var parkUrl = response.data[0].url
-            $("#search-park-input, #forecast-park").html(`<a href=${parkUrl}>${parkName.toUpperCase()} NATIONAL PARK</a>`);
+            $("#search-park-input, #forecast-park").html(`<a href=${parkUrl} target="_blank">${parkName.toUpperCase()} NATIONAL PARK</a>`);
             // send park coordinates to get 7 day forecast
             getParkWeatherData(parkLat, parkLong);
             var apiCampgroundUrl = `https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkId}&api_key=${apiKey}`;
@@ -56,7 +61,6 @@ function getParkData(parkName) {
         })
         .then(function (response) {
             if (!response.ok) {
-                // some alert message
                 return Promise.reject(response);
             }
             else {
@@ -69,7 +73,7 @@ function getParkData(parkName) {
             // put campground info into array and send to its own function for processing 
             // send inputted park name to function to put in local storage
             displayCampgroundInfo(campArray);
-            savParkName(parkName);
+            saveParkData();
         })
         .catch(function (error) {
             alertModal();
@@ -87,7 +91,7 @@ function displayCampgroundInfo(campArray) {
             var campName = campArray[i].name;
             var campUrl = campArray[i].url;
             var campUrlEl = $("<a>").attr("id", "camp-url");
-            $(campUrlEl).html(`<a href=${campUrl}>${campName}</a>`);
+            $(campUrlEl).html(`<a href=${campUrl} target="_blank">${campName}</a>`);
             $(listItemEl).append(campUrlEl);
             var campReserve = campArray[i].reservationUrl;
             if (!campReserve) {
@@ -96,7 +100,7 @@ function displayCampgroundInfo(campArray) {
             }
             else {
                 campReserveEl = $("<a>").attr("id", "camp-reserve-url");
-                $(campReserveEl).html(`<a href=${campReserve}>Reservations</a>`);
+                $(campReserveEl).html(`<a href=${campReserve} target="_blank">Reservations</a>`);
             }
             var listSpace = $("<div>").text(" ");
             $(listItemEl).append(listSpace);
@@ -118,15 +122,6 @@ function displayCampgroundInfo(campArray) {
         }
     }
 }
-function savParkName(parkName) {
-    // save parks to local storage, max of 10, last park entered is first in array
-    // last park in array is sliced out of array
-    if (!parkArray.includes(parkName)) {
-        parkArray.unshift(parkName);
-    }
-    parkArray = parkArray.slice(0, 10);
-    localStorage.setItem("parksKey", JSON.stringify(parkArray));
-}
 // daily weather forecast for the next 7 days
 function getParkWeatherData(lat, lon) {
     var apiWeatherKey = "d26f4f6b4558c822bbb01131aac44003";
@@ -135,7 +130,6 @@ function getParkWeatherData(lat, lon) {
     fetch(apiUrlCoord)
         .then(function (response) {
             if (!response.ok) {
-                // alert("Weather for this city is not available");
                 return Promise.reject(response);
             }
             else {
@@ -163,14 +157,53 @@ function getParkWeatherData(lat, lon) {
         }).catch(function (error) {
             alertModal();
             console.log(error);
-        })
+        });
 }
-
 $(document).ready(function () {
     parkNameEl = $(".search-input");
     $("#search-btn").click(function (event) {
+        nationalPark = document.querySelector("#parkName").value;
         event.preventDefault();
         getInputParkData();
     });
-    //    loadParks();
+    getParkName();
 })
+var saveParkData = function () {
+    if (!nationalPark) {
+        return
+    } else {
+        //save data to local storage giving us a max of 10 parks
+        savePark.unshift(nationalPark);
+        if (savePark.length === 11) {
+            savePark.pop();
+        };
+        localStorage.setItem("parks", JSON.stringify(savePark));
+    }
+}
+var getParkName = function () {
+    //retrieve the parks saved in local storage
+    var savedParkName = localStorage.getItem("parks");
+    if (savedParkName) {
+        savedParkName = JSON.parse(savedParkName);
+        for (var i = 0; i < savedParkName.length; i++) {
+            var parkNameId = savedParkName[i] + "btn";
+            displayButton(savedParkName[i], parkNameId);
+            savePark.push(savedParkName[i]);
+        }
+    }
+}
+var displayButton = function (savedParkName, parkBtn) {
+    //creating the buttons from the saved parks
+    parkBtn = document.createElement("button");
+    parkBtn.innerHTML = savedParkName;
+    parkNameBody.appendChild(parkBtn);
+    parkNameInput = savedParkName;
+    parkBtn.id = savedParkName;
+    parkBtnId.unshift(savedParkName);
+    parkBtn.setAttribute('onclick', 'buttonOnClick(this.id);');
+}
+var buttonOnClick = function (id) {
+    getParkData(id);
+}
+
+

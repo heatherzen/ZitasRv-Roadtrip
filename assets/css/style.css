@@ -4,3 +4,6 @@
 .search-input{
     border-style: double;
 }
+.flexbox-rows{
+    display:flex;
+}

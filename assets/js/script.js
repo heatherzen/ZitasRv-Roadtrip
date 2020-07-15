@@ -1,8 +1,17 @@
+
 var parkArray = [];
 var parkNameEl;
+var nationalPark = "";
+var parkNameBody = document.querySelector("#parkName-btn")
+var savePark = [];
+var parkNameInput = "";
+var parkBtnId = [];
+var counter = 0;
+var parkNum = 9;
 
 // retrieve park name from user input and pass to fetch
 function getInputParkData() {
+    console.log("testing");
     var parkName = $(parkNameEl).val().trim();
     if (!parkName) {
         // some alert message
@@ -109,6 +118,7 @@ function displayCampgroundInfo(campArray) {
 }
 function savParkName(parkName) {
     // save parks to local storage, max of 10, last park entered is first in array
+    window.localStorage.setItem('parkName', '0, 10');
     // last park in array is sliced out of array
     if (!parkArray.includes(parkName)) {
         parkArray.unshift(parkName);
@@ -153,12 +163,49 @@ function getParkWeatherData(lat, lon) {
             console.log(error);
         })
 }
-
+var getPark = localStorage.setItem(parkName, JSON.string);
 $(document).ready(function () {
     parkNameEl = $(".search-input");
     $("#search-btn").click(function (event) {
+        nationalPark = document.querySelector("#parkName").value;
         event.preventDefault();
         getInputParkData();
+        saveParkData();
     });
     //    loadParks();
 })
+var saveParkData = function() {
+    //save data to local storage giving us a max of 10 parks
+    savePark.unshift(nationalPark);
+    if (savePark.length === 11) {
+        savePark.pop();
+    };
+    localStorage.setItem("parks", JSON.stringify(savePark));
+}
+var getParkName = function() {
+    //retrieve the parks saved in local storage
+    var savedParkName = localStorage.getItem("parks");
+    if (savedParkName) {
+        savedParkName = JSON.parse(savedParkName);
+        for (var i = 0; i < savedParkName.length; i++) {
+            var parkNameId = savedParkName[i] + "btn";
+            displayButton(savedParkName [i], parkNameId);
+        }
+    }
+}
+var displayButton = function(savedParkName, parkBtn) {
+    //creating the buttons from the saved parks
+    parkBtn = document.createElement("button");
+    parkBtn.innerHTML = savedParkName;
+    parkNameBody.appendChild(parkBtn);
+    parkNameInput = savedParkName;
+    parkBtn.id = savedParkName;
+    parkBtnId.unshift(savedParkName);
+    parkBtn.setAttribute ('onclick', 'buttonOnClick(this.id);');
+}
+var buttonOnClick = function (id) {
+    getParkData(id);
+}
+getParkName();
+
+

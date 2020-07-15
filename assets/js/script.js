@@ -68,7 +68,7 @@ function getParkData(parkName) {
             // put campground info into array and send to its own function for processing 
             // send inputted park name to function to put in local storage
             displayCampgroundInfo(campArray);
-            savParkName(parkName);
+            saveParkData();
         })
         .catch(function (error) {
             console.log(error);
@@ -116,16 +116,6 @@ function displayCampgroundInfo(campArray) {
         }
     }
 }
-function savParkName(parkName) {
-    // save parks to local storage, max of 10, last park entered is first in array
-    window.localStorage.setItem('parkName', '0, 10');
-    // last park in array is sliced out of array
-    if (!parkArray.includes(parkName)) {
-        parkArray.unshift(parkName);
-    }
-    parkArray = parkArray.slice(0, 10);
-    localStorage.setItem("parksKey", JSON.stringify(parkArray));
-}
 // daily weather forecast for the next 7 days
 function getParkWeatherData(lat, lon) {
     var apiWeatherKey = "d26f4f6b4558c822bbb01131aac44003";
@@ -163,16 +153,14 @@ function getParkWeatherData(lat, lon) {
             console.log(error);
         })
 }
-var getPark = localStorage.setItem(parkName, JSON.string);
-$(document).ready(function () {
+ $(document).ready(function () {
     parkNameEl = $(".search-input");
     $("#search-btn").click(function (event) {
         nationalPark = document.querySelector("#parkName").value;
         event.preventDefault();
         getInputParkData();
-        saveParkData();
     });
-    //    loadParks();
+    getParkName();
 })
 var saveParkData = function() {
     //save data to local storage giving us a max of 10 parks
@@ -190,6 +178,7 @@ var getParkName = function() {
         for (var i = 0; i < savedParkName.length; i++) {
             var parkNameId = savedParkName[i] + "btn";
             displayButton(savedParkName [i], parkNameId);
+            savePark.push(savedParkName[i]);
         }
     }
 }
@@ -206,6 +195,5 @@ var displayButton = function(savedParkName, parkBtn) {
 var buttonOnClick = function (id) {
     getParkData(id);
 }
-getParkName();
 
 

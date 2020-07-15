@@ -7,3 +7,12 @@
 .flexbox-rows{
     display:flex;
 }
+.flexbox-camp {
+  display:flex;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style: none;
+  padding: 20px;
+}

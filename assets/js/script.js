@@ -153,7 +153,7 @@ function getParkWeatherData(lat, lon) {
             console.log(error);
         })
 }
- $(document).ready(function () {
+$(document).ready(function () {
     parkNameEl = $(".search-input");
     $("#search-btn").click(function (event) {
         nationalPark = document.querySelector("#parkName").value;
@@ -162,27 +162,31 @@ function getParkWeatherData(lat, lon) {
     });
     getParkName();
 })
-var saveParkData = function() {
-    //save data to local storage giving us a max of 10 parks
-    savePark.unshift(nationalPark);
-    if (savePark.length === 11) {
-        savePark.pop();
-    };
-    localStorage.setItem("parks", JSON.stringify(savePark));
+var saveParkData = function () {
+    if (!nationalPark) {
+        return
+    } else {
+        //save data to local storage giving us a max of 10 parks
+        savePark.unshift(nationalPark);
+        if (savePark.length === 11) {
+            savePark.pop();
+        };
+        localStorage.setItem("parks", JSON.stringify(savePark));
+    }
 }
-var getParkName = function() {
+var getParkName = function () {
     //retrieve the parks saved in local storage
     var savedParkName = localStorage.getItem("parks");
     if (savedParkName) {
         savedParkName = JSON.parse(savedParkName);
         for (var i = 0; i < savedParkName.length; i++) {
             var parkNameId = savedParkName[i] + "btn";
-            displayButton(savedParkName [i], parkNameId);
+            displayButton(savedParkName[i], parkNameId);
             savePark.push(savedParkName[i]);
         }
     }
 }
-var displayButton = function(savedParkName, parkBtn) {
+var displayButton = function (savedParkName, parkBtn) {
     //creating the buttons from the saved parks
     parkBtn = document.createElement("button");
     parkBtn.innerHTML = savedParkName;
@@ -190,7 +194,7 @@ var displayButton = function(savedParkName, parkBtn) {
     parkNameInput = savedParkName;
     parkBtn.id = savedParkName;
     parkBtnId.unshift(savedParkName);
-    parkBtn.setAttribute ('onclick', 'buttonOnClick(this.id);');
+    parkBtn.setAttribute('onclick', 'buttonOnClick(this.id);');
 }
 var buttonOnClick = function (id) {
     getParkData(id);

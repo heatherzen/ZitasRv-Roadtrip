@@ -159,15 +159,6 @@ function getParkWeatherData(lat, lon) {
             console.log(error);
         });
 }
-$(document).ready(function () {
-    parkNameEl = $(".search-input");
-    $("#search-btn").click(function (event) {
-        nationalPark = document.querySelector("#parkName").value;
-        event.preventDefault();
-        getInputParkData();
-    });
-    getParkName();
-})
 var saveParkData = function () {
     if (!nationalPark) {
         return
@@ -205,5 +196,15 @@ var displayButton = function (savedParkName, parkBtn) {
 var buttonOnClick = function (id) {
     getParkData(id);
 }
+$(document).ready(function () {
+    parkNameEl = $(".search-input");
+    $("#search-btn").click(function (event) {
+        nationalPark = document.querySelector("#parkName").value;
+        event.preventDefault();
+        getInputParkData();
+    });
+    getParkName();
+})
+
 
 

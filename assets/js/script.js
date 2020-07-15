@@ -14,7 +14,7 @@ function getInputParkData() {
     console.log("testing");
     var parkName = $(parkNameEl).val().trim();
     if (!parkName) {
-        alertModal()
+      //  alertModal()
     }
     else {
         getParkData(cleanParkInput(parkName));
@@ -24,13 +24,6 @@ function cleanParkInput(parkName) {
     var cleanInput = parkName.split(" ");
     var cleanName = cleanInput.filter(noSpaces => noSpaces !== "");
     return cleanName.join(" ").toLowerCase();
-}
-function alertModal() {
-    var modalAlert = $(".modal");
-    modalAlert.addClass("is-active");
-    $('.modal-close').click(function () {
-        modalAlert.removeClass('is-active');
-    });
 }
 
 var apiKey = "aqSeG01qbzM1PxC6rl1RhVTduggetxV6DyVBxjar"
@@ -76,7 +69,7 @@ function getParkData(parkName) {
             saveParkData();
         })
         .catch(function (error) {
-            alertModal();
+        //    alertModal();
             console.log(error);
         })
 }
@@ -155,7 +148,7 @@ function getParkWeatherData(lat, lon) {
                 $("#forecast-prediction").append(dailyDivEl);
             }
         }).catch(function (error) {
-            alertModal();
+        //    alertModal();
             console.log(error);
         });
 }

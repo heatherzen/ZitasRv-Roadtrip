@@ -18,3 +18,29 @@ li {
     list-style: none;
     padding: 20px;
 }
+.park-image {
+    height: 300px;
+    width: 450px;
+    display: flex
+}
+.rv-info {
+    font-size: large ;
+    font-weight: bold;
+}
+.forecast-title {
+    font-size: large;
+    font-weight: bold;
+}
+.daily-div {
+    padding: 65px;
+    justify-content: center;
+}
+.forecast-items{
+    background-color: rgb(153, 145, 128);
+}
+.camp-items{
+    border: sienna;
+}
+.title.is-2{
+    margin-left: 20px;
+}

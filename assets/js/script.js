@@ -28,10 +28,12 @@ function getParkData(parkName) {
                 return Promise.reject(response);
             }
             else {
+                console.log(response);
                 return response.json();
             }
         })
         .then(function (response) {
+            console.log(response);
             var parkId = response.data[0].parkCode;
             var parkLong = response.data[0].longitude;
             var parkLat = response.data[0].latitude;

@@ -40,7 +40,6 @@ function getParkData(parkName) {
     fetch(apiUrl)
         .then(function (response) {
             if (!response.ok) {
-                // some alert message
                 return Promise.reject(response);
             }
             else {
@@ -54,7 +53,7 @@ function getParkData(parkName) {
             //should probably display url of park when page loads and message
             // instructing users to click link for information on park and campground fees
             var parkUrl = response.data[0].url
-            $("#search-park-input, #forecast-park").html(`<a href=${parkUrl}>${parkName.toUpperCase()} NATIONAL PARK</a>`);
+            $("#search-park-input, #forecast-park").html(`<a href=${parkUrl} target="_blank">${parkName.toUpperCase()} NATIONAL PARK</a>`);
             // send park coordinates to get 7 day forecast
             getParkWeatherData(parkLat, parkLong);
             var apiCampgroundUrl = `https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkId}&api_key=${apiKey}`;
@@ -62,7 +61,6 @@ function getParkData(parkName) {
         })
         .then(function (response) {
             if (!response.ok) {
-                // some alert message
                 return Promise.reject(response);
             }
             else {
@@ -93,7 +91,7 @@ function displayCampgroundInfo(campArray) {
             var campName = campArray[i].name;
             var campUrl = campArray[i].url;
             var campUrlEl = $("<a>").attr("id", "camp-url");
-            $(campUrlEl).html(`<a href=${campUrl}>${campName}</a>`);
+            $(campUrlEl).html(`<a href=${campUrl} target="_blank">${campName}</a>`);
             $(listItemEl).append(campUrlEl);
             var campReserve = campArray[i].reservationUrl;
             if (!campReserve) {
@@ -102,7 +100,7 @@ function displayCampgroundInfo(campArray) {
             }
             else {
                 campReserveEl = $("<a>").attr("id", "camp-reserve-url");
-                $(campReserveEl).html(`<a href=${campReserve}>Reservations</a>`);
+                $(campReserveEl).html(`<a href=${campReserve} target="_blank">Reservations</a>`);
             }
             var listSpace = $("<div>").text(" ");
             $(listItemEl).append(listSpace);
@@ -132,7 +130,6 @@ function getParkWeatherData(lat, lon) {
     fetch(apiUrlCoord)
         .then(function (response) {
             if (!response.ok) {
-                // alert("Weather for this city is not available");
                 return Promise.reject(response);
             }
             else {

@@ -1,5 +1,6 @@
 # rv-roadtrip
 User story
+Pat is a recently retired Airline pilot, who decided to buy an RV so that he could travel the nation looking for clear and bright night skies.  He and his wife wanted to visit many of the National Parks in the US but needed information on which campsites would allow for RV’s.  He also wanted to know about the weather forecast since he wanted to indulge his new hobby of taking pictures of the stars and galaxies with his new telescope.  The goal of this website was to provide a means for Pat to get the information he needed about the National Parks to ensure that his RV Roadtrip would be a success.
 
 HTML-snippet
 <section id="search-parks-container" class="search-parks-form">

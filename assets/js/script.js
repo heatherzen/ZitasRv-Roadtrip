@@ -14,12 +14,21 @@ function getInputParkData() {
     console.log("testing");
     var parkName = $(parkNameEl).val().trim();
     if (!parkName) {
-      //  alertModal()
+      
+      // Adds class to pull up modal if nothing is put input
+      $("#modal-popup").addClass("is-active");
+      window.setTimeout(disablemodal, 5000);
+      console.log("no park name ");
     }
     else {
         getParkData(cleanParkInput(parkName));
     };
 }
+// Turn the Modal off after 5 seconds
+function disablemodal(){
+    $("#modal-popup").removeClass("is-active");
+}
+
 function cleanParkInput(parkName) {
     var cleanInput = parkName.split(" ");
     var cleanName = cleanInput.filter(noSpaces => noSpaces !== "");
@@ -33,6 +42,9 @@ function getParkData(parkName) {
     fetch(apiUrl)
         .then(function (response) {
             if (!response.ok) {
+                $("#modal-popup").addClass("is-active");
+                window.setTimeout(disablemodal, 5000);
+                console.log("no park name ");
                 return Promise.reject(response);
             }
             else {
@@ -40,6 +52,12 @@ function getParkData(parkName) {
             }
         })
         .then(function (response) {
+             // If misspelled or no park is found modal is brought up 
+             if (response.data[0] === undefined){
+                $("#modal-popup").addClass("is-active");
+                window.setTimeout(disablemodal, 5000);
+                console.log("no park name ");
+             }
             var parkId = response.data[0].parkCode;
             var parkLong = response.data[0].longitude;
             var parkLat = response.data[0].latitude;
@@ -54,6 +72,9 @@ function getParkData(parkName) {
         })
         .then(function (response) {
             if (!response.ok) {
+                $("#modal-popup").addClass("is-active");
+                window.setTimeout(disablemodal, 5000);
+                console.log("no park name ");
                 return Promise.reject(response);
             }
             else {

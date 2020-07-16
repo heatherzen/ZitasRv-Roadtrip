@@ -11,7 +11,6 @@ var parkNum = 9;
 
 // retrieve park name from user input and pass to fetch
 function getInputParkData() {
-    console.log("testing");
     var parkName = $(parkNameEl).val().trim();
     if (!parkName) {
       

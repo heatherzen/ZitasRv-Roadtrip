@@ -173,7 +173,7 @@ function getParkWeatherData(lat, lon) {
         });
 }
 var saveParkData = function () {
-    if (!nationalPark) {
+    if (!nationalPark || savePark.includes(nationalPark)) {
         return
     } else {
         //save data to local storage giving us a max of 10 parks
@@ -183,12 +183,14 @@ var saveParkData = function () {
         };
         localStorage.setItem("parks", JSON.stringify(savePark));
     }
+    getParkName();
 }
 var getParkName = function () {
     //retrieve the parks saved in local storage
     var savedParkName = localStorage.getItem("parks");
     if (savedParkName) {
         savedParkName = JSON.parse(savedParkName);
+        $("#parkName-btn").empty();
         for (var i = 0; i < savedParkName.length; i++) {
             var parkNameId = savedParkName[i] + "btn";
             displayButton(savedParkName[i], parkNameId);

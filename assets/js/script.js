@@ -13,18 +13,18 @@ var parkNum = 9;
 function getInputParkData() {
     var parkName = $(parkNameEl).val().trim();
     if (!parkName) {
-      
-      // Adds class to pull up modal if nothing is put input
-      $("#modal-popup").addClass("is-active");
-      window.setTimeout(disablemodal, 5000);
-      console.log("no park name ");
+
+        // Adds class to pull up modal if nothing is put input
+        $("#modal-popup").addClass("is-active");
+        window.setTimeout(disablemodal, 5000);
+        console.log("no park name ");
     }
     else {
         getParkData(cleanParkInput(parkName));
     };
 }
 // Turn the Modal off after 5 seconds
-function disablemodal(){
+function disablemodal() {
     $("#modal-popup").removeClass("is-active");
 }
 
@@ -51,12 +51,12 @@ function getParkData(parkName) {
             }
         })
         .then(function (response) {
-             // If misspelled or no park is found modal is brought up 
-             if (response.data[0] === undefined){
+            // If misspelled or no park is found modal is brought up 
+            if (response.data[0] === undefined) {
                 $("#modal-popup").addClass("is-active");
                 window.setTimeout(disablemodal, 5000);
                 console.log("no park name ");
-             }
+            }
             var parkId = response.data[0].parkCode;
             var parkLong = response.data[0].longitude;
             var parkLat = response.data[0].latitude;
@@ -89,7 +89,7 @@ function getParkData(parkName) {
             saveParkData();
         })
         .catch(function (error) {
-        //    alertModal();
+            //    alertModal();
             console.log(error);
         })
 }
@@ -168,7 +168,7 @@ function getParkWeatherData(lat, lon) {
                 $("#forecast-prediction").append(dailyDivEl);
             }
         }).catch(function (error) {
-        //    alertModal();
+            //    alertModal();
             console.log(error);
         });
 }
@@ -206,7 +206,7 @@ var displayButton = function (savedParkName, parkBtn) {
     parkNameInput = savedParkName;
     parkBtn.id = savedParkName;
     parkBtnId.unshift(savedParkName);
-    parkBtn.setAttribute('onclick', 'buttonOnClick(this.id);');
+    $(parkBtn).addClass('camp-btn').attr('onclick', 'buttonOnClick(this.id);');
 }
 var buttonOnClick = function (id) {
     getParkData(id);
@@ -220,6 +220,3 @@ $(document).ready(function () {
     });
     getParkName();
 })
-
-
-

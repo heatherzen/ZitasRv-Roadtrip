@@ -1,8 +1,15 @@
+body {
+    width: 97%;
+    margin: auto;
+}
 .message-header {
     display:flex
 }
 .search-input{
     border-style: double;
+}
+.card {
+    box-shadow: none;
 }
 .flexbox-rows{
     display:flex;
@@ -13,7 +20,16 @@
     display:flex;
     flex-wrap: wrap;
 }
-
+.camp-btn {
+    width: 100px;
+    border-radius: 5px;
+    padding: 5px 3px;
+    margin: 3px;
+}
+.camp-btn:hover, .search-bar:hover {
+    color: white;
+    background-color: black;
+}
 li {
     list-style: none;
     padding: 20px;
@@ -36,7 +52,7 @@ li {
     justify-content: center;
 }
 .forecast-items{
-    background-color: rgb(153, 145, 128);
+    background-color: rgb(151, 138, 111);
 }
 .camp-items{
     border: sienna;
